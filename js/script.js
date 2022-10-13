@@ -30,6 +30,16 @@ function playRound(playerSelection, computerSelection){
     else {return 'Its a Tie!'}
 }
 
+ function game(){
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt('Rock, Paper, Scissor Say Shoo!')
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection))
+     }
+ }
+
+
+game()
 
 
 
