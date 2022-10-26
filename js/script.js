@@ -1,45 +1,122 @@
+const rockBtn = document.querySelector(".rock");
+const paperBtn = document.querySelector(".paper");
+const scissorBtn = document.querySelector(".scissor");
+const results = document.querySelector('.results');
+const buttons = document.querySelectorAll('button');
+const score = document.querySelector('.score');
+const playAgain = document.querySelector('.play-again');
+const playAgainBtn = document.createElement("button")
+playAgainBtn.textContent = 'Play Again!';
+
+
+let playerSelection;
+let playerScore = 0;
+let computerScore = 0;
+
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     let rockPaperScissor = ['SCISSOR', 'PAPER', 'ROCK'];
-    let computerChoice =rockPaperScissor[randomNumber]
-    return computerChoice
-}
+    let computerChoice = rockPaperScissor[randomNumber];
+    return computerChoice;
+};
+
+rockBtn.addEventListener('click', () => {
+    game('rock');
+});
+
+paperBtn.addEventListener('click', () => {
+    game('paper');
+});
+
+scissorBtn.addEventListener('click', () =>{
+    game('scissor');
+});
+
+
+
 
 
 function playRound(playerSelection, computerSelection){
+      
     playerSelection = playerSelection.toUpperCase()
+    
 
     if (playerSelection == 'ROCK' && computerSelection == 'SCISSOR' ) {
-        return 'You Win! Rock Beats Scissor';
+        playerScore += 1;
+        results.textContent = 'You win! Rock beats scissors!';
     }
     else if (playerSelection == 'PAPER' && computerSelection == 'ROCK') {
-        return 'You Win! Paper Beats Rock';
+        playerScore +=1;
+        results.textContent = 'You win! Paper beats rock!';
     }
     else if (playerSelection == 'SCISSOR' && computerSelection == 'PAPER') {
-        return 'You Win! Scissor Beats Paper';
+        playerScore +=1;
+        results.textContent = 'You win! Scissor beats paper';
     }
     else if (playerSelection == 'SCISSOR' && computerSelection == 'ROCK'){
-        return 'You Lose! Rock Beats Scissor';
+        computerScore += 1;
+        results.textContent = 'You lose! Rock beats scissor';
     }
     else if (playerSelection == 'PAPER' && computerSelection == 'SCISSOR'){
-        return 'You Lose! Scissor Beats Paper';
+        computerScore += 1;
+        results.textContent = 'You lose! Scissor beats paper';
     }
     else if (playerSelection == 'ROCK' && computerSelection == 'PAPER'){
-        return 'You Lose! Paper Beats Rock';
+        computerScore += 1;
+        results.textContent = 'You lose! Paper beats rock';
     }
-    else {return 'Its a Tie!'}
-}
+    else {
+        results.textContent = "It's a tie!";
+    }
+    return results.textContent
 
- function game(){
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt('Rock, Paper, Scissor Say Shoo!')
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection))
-     }
- }
+};
+
+ function game(playerSelection){
+        let computerChoice = getComputerChoice();
+        playRound(playerSelection, computerChoice);
+        score.textContent = `The score is Player: ${playerScore}, Computer: ${computerScore}`
+        if (computerScore == 5){
+            results.textContent = 'You lost to the computer! T____T'
+            rockBtn.disabled = true;
+            paperBtn.disabled = true;
+            scissorBtn.disabled = true;
+            playAgain.append(playAgainBtn);
+        
+            playAgainBtn.addEventListener('click', () =>{
+                restart()
+            });
+        } else if(playerScore == 5){
+            results.textContent = 'You won against the computer!!!'
+            rockBtn.disabled = true;
+            paperBtn.disabled = true;
+            scissorBtn.disabled = true;
+            playAgain.append(playAgainBtn);
+        
+            playAgainBtn.addEventListener('click', () =>{
+                restart()
+            });
+        }
+        else{}
+      
+
+    };
+
+    function restart(){
+        playerScore = 0;
+        computerScore = 0;
+        results.textContent = '';
+        score.textContent = '';
+        rockBtn.disabled = false;
+        paperBtn.disabled = false;
+        scissorBtn.disabled = false;
+        playAgainBtn.remove()
+
+    };
 
 
-game()
+
 
 
 
