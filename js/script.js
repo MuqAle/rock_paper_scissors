@@ -6,6 +6,12 @@ const buttons = document.querySelectorAll('button');
 const score = document.querySelector('.score');
 const playAgain = document.querySelector('.play-again');
 const playAgainBtn = document.createElement("button")
+const image = document.createElement('img');
+image.style.height = '350px';
+image.style.width ='550px';
+image.style.objectFit = 'cover';
+
+const outcome = document.querySelector('.outcome');
 playAgainBtn.textContent = 'Play Again!';
 
 
@@ -35,8 +41,6 @@ scissorBtn.addEventListener('click', () =>{
 
 
 
-
-
 function playRound(playerSelection, computerSelection){
       
     playerSelection = playerSelection.toUpperCase()
@@ -45,38 +49,45 @@ function playRound(playerSelection, computerSelection){
     if (playerSelection == 'ROCK' && computerSelection == 'SCISSOR' ) {
         playerScore += 1;
         results.textContent = 'You win! Rock beats scissors!';
+        image.src = 'imgs/rock_vs_scissor.svg';
+
     }
     else if (playerSelection == 'PAPER' && computerSelection == 'ROCK') {
         playerScore +=1;
         results.textContent = 'You win! Paper beats rock!';
+        image.src = 'imgs/paper_vs_rock.svg';
     }
     else if (playerSelection == 'SCISSOR' && computerSelection == 'PAPER') {
         playerScore +=1;
         results.textContent = 'You win! Scissor beats paper';
+        image.src = 'imgs/scissor_vs_paper.svg';
     }
     else if (playerSelection == 'SCISSOR' && computerSelection == 'ROCK'){
         computerScore += 1;
         results.textContent = 'You lose! Rock beats scissor';
+        image.src = 'imgs/scissor_vs_rock.svg';
     }
     else if (playerSelection == 'PAPER' && computerSelection == 'SCISSOR'){
         computerScore += 1;
         results.textContent = 'You lose! Scissor beats paper';
+        image.src = 'imgs/paper_vs_scissor.svg';
     }
     else if (playerSelection == 'ROCK' && computerSelection == 'PAPER'){
         computerScore += 1;
         results.textContent = 'You lose! Paper beats rock';
+        image.src ='imgs/rock_vs_paper.svg'
     }
     else {
         results.textContent = "It's a tie!";
+        image.style.display = 'none'
     }
-    return results.textContent
-
+    outcome.append(image);
 };
 
  function game(playerSelection){
         let computerChoice = getComputerChoice();
         playRound(playerSelection, computerChoice);
-        score.textContent = `The score is Player: ${playerScore}, Computer: ${computerScore}`
+        score.textContent = `The score is Player:\n${playerScore} Computer: ${computerScore}`
         if (computerScore == 5){
             results.textContent = 'You lost to the computer! T____T'
             rockBtn.disabled = true;
@@ -111,7 +122,8 @@ function playRound(playerSelection, computerSelection){
         rockBtn.disabled = false;
         paperBtn.disabled = false;
         scissorBtn.disabled = false;
-        playAgainBtn.remove()
+        playAgainBtn.remove();
+        image.remove();
 
     };
 
