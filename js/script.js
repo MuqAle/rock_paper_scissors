@@ -82,9 +82,9 @@ function playRound(playerSelection, computerSelection){
 
  function game(playerSelection){
         let computerChoice = getComputerChoice();
+        playRound(playerSelection, computerChoice);
         playersScore.textContent = `Player: ${playerScore}`
         computersScore.textContent = `Computer: ${computerScore}`
-        playRound(playerSelection, computerChoice);
         if (computerScore == 5){
             results.textContent = 'You lost to the computer!'
             rockBtn.disabled = true;
