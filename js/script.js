@@ -51,15 +51,11 @@ function playRound(playerSelection, computerSelection){
     if (playerSelection == 'ROCK' && computerSelection == 'SCISSOR' ) {
         playerScore += 1;
         results.textContent = 'You win! Rock beats scissors!';
-        image.src = 'imgs/rock_vs_scissor.svg';
-        image.style.display ='block'
 
     }
     else if (playerSelection == 'PAPER' && computerSelection == 'ROCK') {
         playerScore +=1;
         results.textContent = 'You win! Paper beats rock!';
-        image.src = 'imgs/paper_vs_rock.svg';
-        image.style.display = 'block';
     }
     else if (playerSelection == 'SCISSOR' && computerSelection == 'PAPER') {
         playerScore +=1;
@@ -86,9 +82,9 @@ function playRound(playerSelection, computerSelection){
 
  function game(playerSelection){
         let computerChoice = getComputerChoice();
-        playRound(playerSelection, computerChoice);
         playersScore.textContent = `Player: ${playerScore}`
         computersScore.textContent = `Computer: ${computerScore}`
+        playRound(playerSelection, computerChoice);
         if (computerScore == 5){
             results.textContent = 'You lost to the computer!'
             rockBtn.disabled = true;
