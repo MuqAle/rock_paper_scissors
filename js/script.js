@@ -11,6 +11,8 @@ const outcome = document.querySelector('.outcome');
 playAgainBtn.textContent = 'Play Again!';
 const pick = document.querySelector('.pick')
 pick.textContent = 'Pick your weapon!'
+const playersScore = document.querySelector('.player_score')
+const computersScore = document.querySelector('.computer_score')
 
 
 let playerSelection;
@@ -85,7 +87,8 @@ function playRound(playerSelection, computerSelection){
  function game(playerSelection){
         let computerChoice = getComputerChoice();
         playRound(playerSelection, computerChoice);
-        score.textContent = `Player: ${playerScore} Computer: ${computerScore}`
+        playersScore.textContent = `Player: ${playerScore}`
+        computersScore.textContent = `Computer: ${computerScore}`
         if (computerScore == 5){
             results.textContent = 'You lost to the computer!'
             rockBtn.disabled = true;
@@ -114,7 +117,8 @@ function playRound(playerSelection, computerSelection){
         playerScore = 0;
         computerScore = 0;
         results.textContent = '';
-        score.textContent = '';
+        playersScore.textContent = '';
+        computersScore.textContent = '';
         rockBtn.disabled = false;
         paperBtn.disabled = false;
         scissorBtn.disabled = false;

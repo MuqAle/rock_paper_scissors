@@ -44,9 +44,10 @@ h1{
 
 .score{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     font-size: 45px ;
     font-family: 'Josefin Sans', sans-serif
+
 }
 
 .restart{
@@ -67,8 +68,3 @@ h1{
     transform: scale(1.2);
 }
 
-.image{
-    height: 350px;
-    width: 550px';
-    object-fit: cover;
-}
