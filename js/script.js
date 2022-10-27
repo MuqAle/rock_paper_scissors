@@ -6,6 +6,7 @@ const buttons = document.querySelectorAll('button');
 const score = document.querySelector('.score');
 const playAgain = document.querySelector('.play-again');
 const playAgainBtn = document.createElement("button")
+playAgainBtn.classList.add('restart')
 const image = document.createElement('img');
 image.style.height = '350px';
 image.style.width ='550px';
@@ -79,7 +80,6 @@ function playRound(playerSelection, computerSelection){
     }
     else {
         results.textContent = "It's a tie!";
-        image.style.display = 'none'
     }
     outcome.append(image);
 };
@@ -89,7 +89,7 @@ function playRound(playerSelection, computerSelection){
         playRound(playerSelection, computerChoice);
         score.textContent = `The score is Player:\n${playerScore} Computer: ${computerScore}`
         if (computerScore == 5){
-            results.textContent = 'You lost to the computer! T____T'
+            results.textContent = 'You lost to the computer!'
             rockBtn.disabled = true;
             paperBtn.disabled = true;
             scissorBtn.disabled = true;
